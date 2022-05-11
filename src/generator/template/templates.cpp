@@ -259,6 +259,11 @@ int render_template(const std::string &content, const template_args &vars, std::
 }
 
 const std::string clash_script_template = R"(def main(ctx, md):
+  if md["src_ip"] == "192.168.50.100" and md["host"] == "www.googleapis.com":
+    return "🌈 彩虹节点"
+  if md["src_ip"] == "192.168.50.218":
+    return "🎮 游戏平台"
+
   host = md["host"]
 {% for rule in rules %}
 {% if rule.set == "true" %}{% include "group_template" %}{% endif %}
